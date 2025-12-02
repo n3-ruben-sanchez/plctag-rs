@@ -220,8 +220,8 @@ impl AsyncTag {
         // pending
         let status = self.recv_event(event).await;
         debug_assert!(!status.is_pending());
+        guard.pending = false;
         if status.is_err() {
-            guard.pending = false;
             return Err(status.into());
         }
         drop(guard);
