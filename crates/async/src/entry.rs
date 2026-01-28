@@ -400,7 +400,10 @@ impl InflightGuard<'_> {
                 self.pending = false;
                 Err(status.into())
             }
-            _ => unreachable!(),
+            Status::Ok => {
+                self.pending = false;
+                Ok(())
+            }
         }
     }
 
@@ -416,7 +419,10 @@ impl InflightGuard<'_> {
                 self.pending = false;
                 Err(status.into())
             }
-            _ => unreachable!(),
+            Status::Ok => {
+                self.pending = false;
+                Ok(())
+            }
         }
     }
 }
