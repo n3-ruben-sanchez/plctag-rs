@@ -58,6 +58,8 @@ fn main() {
     if cfg!(target_os = "windows") && is_static {
         println!("cargo:rustc-link-lib=ws2_32");
         println!("cargo:rustc-link-lib=static=plctag_static");
+    } else if is_static {
+        println!("cargo:rustc-link-lib=static=plctag_static");
     } else {
         println!("cargo:rustc-link-lib=plctag");
     }
